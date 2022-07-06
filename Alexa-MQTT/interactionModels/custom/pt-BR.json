@@ -1,0 +1,317 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "alimentador pet",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "ConnectDeviceIntent",
+          "slots": [
+            {
+              "name": "device",
+              "type": "device_type",
+              "samples": [
+                "o {device}",
+                "{device}"
+              ]
+            }
+          ],
+          "samples": [
+            "conectar dispositivo",
+            "conectar alimentador",
+            "conectar "
+          ]
+        },
+        {
+          "name": "ListConnectedIntent",
+          "slots": [
+            {
+              "name": "keepalive",
+              "type": "device_type"
+            }
+          ],
+          "samples": [
+            "quem está conectado",
+            "litar os conectados",
+            "listar conectados"
+          ]
+        },
+        {
+          "name": "DisconnectDeviceIntent",
+          "slots": [
+            {
+              "name": "device",
+              "type": "device_type"
+            }
+          ],
+          "samples": [
+            "desconectar alimentador ",
+            "desconectar {device}",
+            "desconectar "
+          ]
+        },
+        {
+          "name": "FeedIntent",
+          "slots": [
+            {
+              "name": "device",
+              "type": "device_type"
+            },
+            {
+              "name": "quantity",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "{quantity}",
+                "com {quantity}"
+              ]
+            }
+          ],
+          "samples": [
+            "alimentar {device}",
+            "alimentar animal",
+            "alimentar",
+            "alimentar bixo",
+            "alimentar caozinho"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "pote três",
+                "synonyms": [
+                  "alimentador tres"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "pote dois",
+                "synonyms": [
+                  "alimentador dois"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "pote um ",
+                "synonyms": [
+                  "alimentador um"
+                ]
+              }
+            }
+          ],
+          "name": "device_type"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "ConnectDeviceIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "device",
+              "type": "device_type",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.159891946822.1082545582573"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.159891946822.1082545582573.1584616986728"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "DisconnectDeviceIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "device",
+              "type": "device_type",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.123241282332.401694460091"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.123241282332.401694460091.1494710652060"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "FeedIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "device",
+              "type": "device_type",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1051383808475.13161849721"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.1051383808475.13161849721.191903064631"
+                }
+              ]
+            },
+            {
+              "name": "quantity",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1509153345842.1044493790759"
+              },
+              "validations": [
+                {
+                  "type": "isInSet",
+                  "prompt": "Slot.Validation.1509153345842.1044493790759.681152143181",
+                  "values": [
+                    "11",
+                    "22",
+                    "12",
+                    "23",
+                    "13",
+                    "24",
+                    "14",
+                    "15",
+                    "16",
+                    "17",
+                    "18",
+                    "19",
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "20",
+                    "10",
+                    "21"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.159891946822.1082545582573",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor, diga o nome do seu alimentador para fazer a conexão"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.159891946822.1082545582573.1584616986728",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Este nome de alimentador é inválido, por exemplo, diga pote um"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.123241282332.401694460091",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor, diga-me qual alimentador você deseja desconectar-se"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.123241282332.401694460091.1494710652060",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Dispositivo inválido ou não conectado, por favor, tente novamente"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1509153345842.1044493790759",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor, diga com quantas porções você deseja alimentar seu pet"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.1509153345842.1044493790759.681152143181",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Número inválido, o alimentador, alimenta de uma até vinte e quatro porções por refeição"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1051383808475.13161849721",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor, diga qual alimentador deseja usar"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.1051383808475.13161849721.191903064631",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Alimentador inválido, diga por exemplo, pote um"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "8"
+}

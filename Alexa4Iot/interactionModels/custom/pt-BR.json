@@ -1,0 +1,235 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "assistente voz",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "TriggerDeviceIntent",
+          "slots": [
+            {
+              "name": "deviceType",
+              "type": "device",
+              "samples": [
+                "{deviceType}"
+              ]
+            },
+            {
+              "name": "noDevice",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "{deviceType} {noDevice}",
+                "três",
+                "dois",
+                "um",
+                "{noDevice}"
+              ]
+            }
+          ],
+          "samples": [
+            "ligar {deviceType}",
+            "ligar {deviceType} {noDevice}",
+            "ligar ",
+            "acionar {deviceType}",
+            "acionar {deviceType} {noDevice}",
+            "acionar ",
+            "acionar dispositivo",
+            "acionar dipositivos"
+          ]
+        },
+        {
+          "name": "DeactivateDeviceIntent",
+          "slots": [
+            {
+              "name": "deviceName",
+              "type": "device",
+              "samples": [
+                "{deviceName}"
+              ]
+            },
+            {
+              "name": "noDevice",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "{deviceName} {noDevice}"
+              ]
+            }
+          ],
+          "samples": [
+            "desligar {deviceName}",
+            "desativar {deviceName}",
+            "desligar {deviceName} {noDevice}",
+            "desativar {deviceName} {noDevice}",
+            "desativar ",
+            "desligar "
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "RELE"
+              }
+            },
+            {
+              "name": {
+                "value": "MOTOR"
+              }
+            },
+            {
+              "name": {
+                "value": "LED "
+              }
+            }
+          ],
+          "name": "device"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "TriggerDeviceIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "deviceType",
+              "type": "device",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.541854872985.196943982166"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.541854872985.196943982166.641490007842"
+                }
+              ]
+            },
+            {
+              "name": "noDevice",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.541854872985.963320536106"
+              }
+            }
+          ]
+        },
+        {
+          "name": "DeactivateDeviceIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "deviceName",
+              "type": "device",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1524561085003.121913538033"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.1524561085003.121913538033.1080715488293"
+                }
+              ]
+            },
+            {
+              "name": "noDevice",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1524561085003.331941462283"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.541854872985.196943982166",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "por favor, diga o tipo do dispositivo"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.541854872985.196943982166.641490007842",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor, fale o nome do dispositivo, temos led, motor e relé"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.541854872985.963320536106",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor, indique o id dispositivo, exemplo LED um ou um"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1524561085003.121913538033",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor, diga-me qual dispositivo desligar"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.1524561085003.121913538033.1080715488293",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor, diga me qual dispositivo voçê deseja desligar, pode ser LED, MOTOR ou RELÉ"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1524561085003.331941462283",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor, diga qual o identificador do dispositivo que deseja desligar"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "9"
+}
